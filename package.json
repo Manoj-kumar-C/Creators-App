@@ -9,8 +9,11 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "axios": "^1.6.8",
+    "cheerio": "^1.0.0-rc.12",
     "expo": "~50.0.17",
     "expo-status-bar": "~1.11.1",
+    "fast-html-parser": "^1.0.1",
     "react": "18.2.0",
     "react-native": "0.73.6"
   },
