@@ -22,7 +22,8 @@
     "react-native-gesture-handler": "~2.16.1",
     "react-native-login-screen": "^5.0.0",
     "react-native-reanimated": "~3.10.1",
-    "react-native-text-input-interactive": "^0.1.5"
+    "react-native-text-input-interactive": "^0.1.5",
+    "react-native-webview": "^13.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
