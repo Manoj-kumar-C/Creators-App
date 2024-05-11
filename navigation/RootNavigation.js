@@ -4,10 +4,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import { Ionicons } from '@expo/vector-icons'; // Import icons from your preferred library
+import Devs from '../screens/tools/Devs';
 
 const Drawer = createDrawerNavigator();
 
 const RootNavigation = () => {
+    
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
@@ -67,7 +69,7 @@ const RootNavigation = () => {
         />
         <Drawer.Screen 
           name="Developer Readme Generator" 
-          component={SettingsScreen} 
+          component={Devs} 
           options={{
             drawerIcon: ({ focused, color, size }) => (
               <Ionicons name={focused ? 'reader' : 'reader-outline'} size={size} color={color} />
