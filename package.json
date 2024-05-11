@@ -9,13 +9,16 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-navigation/drawer": "^6.6.15",
     "axios": "^1.6.8",
     "cheerio": "^1.0.0-rc.12",
-    "expo": "~50.0.17",
-    "expo-status-bar": "~1.11.1",
+    "expo": "^51.0.2",
+    "expo-status-bar": "^1.12.1",
     "fast-html-parser": "^1.0.1",
     "react": "18.2.0",
-    "react-native": "0.73.6"
+    "react-native": "^0.74.1",
+    "react-native-gesture-handler": "~2.16.1",
+    "react-native-reanimated": "~3.10.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
