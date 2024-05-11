@@ -5,6 +5,7 @@ import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import { Ionicons } from '@expo/vector-icons'; // Import icons from your preferred library
 import Devs from '../screens/tools/Devs';
+import Login from '../screens/Login';
 
 const Drawer = createDrawerNavigator();
 
@@ -92,6 +93,16 @@ const RootNavigation = () => {
             drawerIcon: ({ focused, color, size }) => (
               <Ionicons name={focused ? 'settings' : 'settings-outline'} size={size} color={color} />
             ),
+          }}
+        />
+        <Drawer.Screen 
+          name="LogOut" 
+          
+          component={Login} 
+          options={{
+            drawerIcon: ({ focused, color, size }) => (
+              <Ionicons name={focused ? 'person' : 'person-outline'} size={size} color={color} />
+            ), headerShown: false,
           }}
         />
       </Drawer.Navigator>
