@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, Button, Linking } from 'react-native'; // Import Button and Linking from react-native
+import WebView from 'react-native-webview';
 
 const Devs = () => {
   const handleNavigateToSite = () => {
@@ -7,10 +8,7 @@ const Devs = () => {
   };
 
   return (
-    <View>
-      <Text>Devs</Text>
-      <Button title="Go to Site" onPress={handleNavigateToSite} />
-    </View>
+    <WebView source={{ uri: 'https://developers-readme-generator.vercel.app/' }} style={{ flex: 1 }} />
   );
 }
 

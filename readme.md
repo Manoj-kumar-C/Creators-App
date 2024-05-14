@@ -24,3 +24,11 @@ Auth: Firebase
 
 Apis: YT Data Api
 ```
+
+
+Cmds to build a RN apps
+
+Refer: https://docs.expo.dev/build/setup/
+
+
+CMD to convert aab to apk

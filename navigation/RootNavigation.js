@@ -9,6 +9,7 @@ import Login from '../screens/Login';
 import DownloaderPage from '../screens/tools/Aio';
 import YoutubeTag from '../screens/tools/youtubeTag';
 import YoutubeThumbnail from '../screens/tools/YoutubeThumbnail';
+import YoutubeVideoDownloader from '../screens/tools/YoutubeVideoDownloader';
 
 
 const Drawer = createDrawerNavigator();
@@ -30,6 +31,15 @@ const RootNavigation = () => {
         <Drawer.Screen 
           name="AIO downloader" 
           component={DownloaderPage} 
+          options={{
+            drawerIcon: ({ focused, color, size }) => (
+              <Ionicons name={focused ? 'download' : 'download-outline'} size={size} color={color} />
+            ),
+          }}
+        />
+        <Drawer.Screen 
+          name="YT downloader" 
+          component={YoutubeVideoDownloader} 
           options={{
             drawerIcon: ({ focused, color, size }) => (
               <Ionicons name={focused ? 'download' : 'download-outline'} size={size} color={color} />
