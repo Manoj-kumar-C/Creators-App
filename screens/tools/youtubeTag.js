@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, Clipboard } from 'react-native';
 import axios from 'axios';
 
 const YoutubeTag = () => {
@@ -33,27 +33,99 @@ const YoutubeTag = () => {
     }
   };
 
+  const handleClear = () => {
+    setYoutubeUrl('');
+    setVideoTags([]);
+    setError('');
+  };
+
+  const handleCopy = () => {
+    const tagsString = videoTags.join(', ');
+    Clipboard.setString(tagsString);
+    alert('Tags copied to clipboard!');
+  };
+
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
-        style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}
+        style={styles.input}
         placeholder="Enter YouTube URL"
         onChangeText={setYoutubeUrl}
         value={youtubeUrl}
       />
-      <Button title="Search" onPress={handleSearch} />
+      <View style={styles.buttonContainer}>
+        <Button title="Search" onPress={handleSearch} />
+        <TouchableOpacity onPress={handleClear} style={styles.clearButton}>
+          <Text style={{ color: 'white' }}>Clear</Text>
+        </TouchableOpacity>
+      </View>
       {error ? (
-        <Text style={{ color: 'red' }}>{error}</Text>
+        <Text style={styles.errorText}>{error}</Text>
       ) : (
-        <View>
-          <Text>Video Tags:</Text>
+        <View style={styles.tagsContainer}>
+          <Text style={styles.tagsHeader}>Video Tags:</Text>
           {videoTags.map((tag, index) => (
-            <Text key={index}>{tag}</Text>
+            <Text key={index} style={styles.tagText}>{tag}</Text>
           ))}
+          {videoTags.length > 0 && (
+            <TouchableOpacity onPress={handleCopy} style={styles.copyButton}>
+              <Text style={styles.copyButtonText}>Copy to Clipboard</Text>
+            </TouchableOpacity>
+          )}
         </View>
       )}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    marginBottom: 10,
+  },
+  clearButton: {
+    backgroundColor: 'blue',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    marginLeft: 10,
+  },
+  errorText: {
+    color: 'red',
+    marginBottom: 10,
+  },
+  tagsContainer: {
+    marginTop: 10,
+  },
+  tagsHeader: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  tagText: {
+    marginBottom: 5,
+  },
+  copyButton: {
+    backgroundColor: 'blue',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    alignSelf: 'center',
+    marginTop: 10,
+  },
+  copyButtonText: {
+    color: 'white',
+  },
+});
 
 export default YoutubeTag;
