@@ -9,3 +9,18 @@ Creators  Tools List:
 4. Freelancing Clients
 5. SFX tools
 ```
+
+
+Tech Stack: 
+
+```
+Front End : Next.js, TailwindCSS, GlueStack Ui, React Native
+
+Backend: Express.js, FastApi, SQLAlchemy, Mongoose
+
+DB: Mysql, MongoDB
+
+Auth: Firebase
+
+Apis: YT Data Api
+```
