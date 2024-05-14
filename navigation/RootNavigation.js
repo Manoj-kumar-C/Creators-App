@@ -7,6 +7,9 @@ import { Ionicons } from '@expo/vector-icons'; // Import icons from your preferr
 import Devs from '../screens/tools/Devs';
 import Login from '../screens/Login';
 import DownloaderPage from '../screens/tools/Aio';
+import YoutubeTag from '../screens/tools/youtubeTag';
+import YoutubeThumbnail from '../screens/tools/YoutubeThumbnail';
+
 
 const Drawer = createDrawerNavigator();
 
@@ -44,7 +47,7 @@ const RootNavigation = () => {
         />
         <Drawer.Screen 
           name="Tag Finder" 
-          component={SettingsScreen} 
+          component={YoutubeTag} 
           options={{
             drawerIcon: ({ focused, color, size }) => (
               <Ionicons name={focused ? 'search' : 'search-outline'} size={size} color={color} />
@@ -53,7 +56,7 @@ const RootNavigation = () => {
         />
         <Drawer.Screen 
           name="Thumbnail Downloader" 
-          component={SettingsScreen} 
+          component={YoutubeThumbnail} 
           options={{
             drawerIcon: ({ focused, color, size }) => (
               <Ionicons name={focused ? 'image' : 'image-outline'} size={size} color={color} />
