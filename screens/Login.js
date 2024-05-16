@@ -13,7 +13,7 @@ const Login = () => {
     // Example: Check if the username and password match your credentials
     if (username === 'user' && password === 'password') {
       // Navigate to the home screen
-      navigation.navigate('Home');
+      navigation.navigate('Courses');
     } else {
       // Handle incorrect login credentials
       alert('Invalid username or password');
