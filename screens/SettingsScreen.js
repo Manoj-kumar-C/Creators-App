@@ -17,6 +17,14 @@ export default function SettingsScreen() {
     pushNotifications: false,
   });
 
+  const handleLogin = () => {
+    // Example: Check if the username and password match your credentials
+      // Navigate to the home screen
+      navigation.navigate('Login');
+      // Handle incorrect login credentials
+      
+  };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#f8f8f8' }}>
       <View style={styles.container}>
@@ -69,10 +77,10 @@ export default function SettingsScreen() {
                   style={styles.profileAvatar} />
 
                 <View style={styles.profileBody}>
-                  <Text style={styles.profileName}>John Doe</Text>
+                  <Text style={styles.profileName}>Manojkumar C</Text>
 
                   <Text style={styles.profileHandle}>
-                    john.doe@mail.com
+                    developermanoj2003@gmail.com
                   </Text>
                 </View>
 
@@ -241,15 +249,17 @@ export default function SettingsScreen() {
                   styles.rowLast,
                   { alignItems: 'center' },
                 ]}>
+                {/*
                 <TouchableOpacity
                   onPress={() => {
-                    // handle onPress
+                    
                   }}
                   style={styles.row}>
-                  <Text style={[styles.rowLabel, styles.rowLabelLogout]}>
+                  <Text style={[styles.rowLabel, styles.rowLabelLogout]} >
                     Log Out
                   </Text>
                 </TouchableOpacity>
+                */}
               </View>
             </View>
           </View>

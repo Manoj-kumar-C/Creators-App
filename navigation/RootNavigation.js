@@ -6,10 +6,11 @@ import SettingsScreen from '../screens/SettingsScreen';
 import { Ionicons } from '@expo/vector-icons'; // Import icons from your preferred library
 import Devs from '../screens/tools/Devs';
 import Login from '../screens/Login';
-import DownloaderPage from '../screens/tools/Aio';
+import DownloaderPage from '../screens/tools/Aio';  
 import YoutubeTag from '../screens/tools/youtubeTag';
 import YoutubeThumbnail from '../screens/tools/YoutubeThumbnail';
 import YoutubeVideoDownloader from '../screens/tools/YoutubeVideoDownloader';
+import FreelancingJobs from '../screens/FreelancingJobs';
 
 const Drawer = createDrawerNavigator();
 
@@ -97,9 +98,10 @@ const RootNavigation = () => {
             headerTitleAlign: 'center',
           }}
         />
+        
         <Drawer.Screen 
-          name="Account" 
-          component={SettingsScreen} 
+          name="Freelancing Jobs" 
+          component={FreelancingJobs} 
           options={{
             drawerIcon: ({ focused, color, size }) => (
               <Ionicons name={focused ? 'person' : 'person-outline'} size={size} color={color} />
@@ -107,8 +109,9 @@ const RootNavigation = () => {
             headerTitleAlign: 'center',
           }}
         />
+        
         <Drawer.Screen 
-          name="Settings" 
+          name="Account" 
           component={SettingsScreen} 
           options={{
             drawerIcon: ({ focused, color, size }) => (
