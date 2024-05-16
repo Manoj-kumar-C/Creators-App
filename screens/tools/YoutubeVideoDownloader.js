@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, Alert, Image, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 
 const YoutubeVideoDownloader = () => {
   const [youtubeUrl, setYoutubeUrl] = useState('');
@@ -38,14 +38,17 @@ const YoutubeVideoDownloader = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.header}>YouTube Video Downloader</Text>
       <TextInput
         style={styles.input}
         placeholder="Enter YouTube Video URL"
         onChangeText={setYoutubeUrl}
         value={youtubeUrl}
       />
-      <Button title="Fetch Video Data" onPress={fetchVideoData} />
+      <TouchableOpacity style={styles.fetchButton} onPress={fetchVideoData}>
+        <Text style={styles.fetchButtonText}>Fetch Video Data</Text>
+      </TouchableOpacity>
 
       {videoData && (
         <View style={styles.videoInfoContainer}>
@@ -65,62 +68,97 @@ const YoutubeVideoDownloader = () => {
       <TouchableOpacity style={styles.clearButton} onPress={handleClear}>
         <Text style={styles.clearButtonText}>Clear</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    flexGrow: 1,
     padding: 20,
-    flex: 1,
     justifyContent: 'center',
+    backgroundColor: '#f8f8f8',
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+    color: '#333',
   },
   input: {
-    height: 40,
-    borderColor: 'gray',
+    height: 50,
+    borderColor: '#ccc',
     borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    marginBottom: 20,
+    backgroundColor: '#fff',
+    fontSize: 16,
+  },
+  fetchButton: {
+    backgroundColor: '#007bff',
+    paddingVertical: 15,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  fetchButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   videoInfoContainer: {
     alignItems: 'center',
+    marginBottom: 20,
   },
   videoTitle: {
+    fontSize: 18,
     fontWeight: 'bold',
+    textAlign: 'center',
     marginBottom: 10,
+    color: '#333',
   },
   thumbnail: {
-    width: 200,
-    height: 100,
+    width: 320,
+    height: 180,
+    borderRadius: 8,
     marginBottom: 10,
   },
   availableResolutions: {
+    fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: '#666',
   },
   resolutionButtons: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 20,
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
   downloadButton: {
-    backgroundColor: 'blue',
+    backgroundColor: '#28a745',
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderRadius: 5,
+    borderRadius: 8,
+    margin: 5,
   },
   downloadButtonText: {
-    color: 'white',
+    color: '#fff',
+    fontSize: 16,
   },
   clearButton: {
-    backgroundColor: 'blue',
-    paddingVertical: 10,
+    backgroundColor: '#dc3545',
+    paddingVertical: 15,
     paddingHorizontal: 20,
-    borderRadius: 5,
-    alignSelf: 'center',
+    borderRadius: 8,
+    alignItems: 'center',
+    marginTop: 20,
   },
   clearButtonText: {
-    color: 'white',
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

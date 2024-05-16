@@ -63,7 +63,7 @@ const YoutubeThumbnail = () => {
       <View style={styles.buttonContainer}>
         <Button title="Search" onPress={handleSearch} />
         <TouchableOpacity onPress={handleClear} style={styles.clearButton}>
-          <Text style={{ color: 'white' }}>Clear</Text>
+          <Text style={styles.clearButtonText}>Clear</Text>
         </TouchableOpacity>
       </View>
       {error ? (
@@ -82,14 +82,12 @@ const YoutubeThumbnail = () => {
           </View>
           <View>
             {resolutions.map((res, index) => (
-              <View key={index} style={styles.resolutionItem}>
-                <TouchableOpacity onPress={() => setThumbnailUrl(res.url)} style={styles.center}>
-                  <Text style={[styles.resolutionText, thumbnailUrl === res.url && styles.selectedResolution]}>{res.size}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => handleDownload(res.url)} style={styles.center}>
+              <TouchableOpacity key={index} style={styles.resolutionItem} onPress={() => setThumbnailUrl(res.url)}>
+                <Text style={[styles.resolutionText, thumbnailUrl === res.url && styles.selectedResolution]}>{res.size}</Text>
+                <TouchableOpacity onPress={() => handleDownload(res.url)}>
                   <Image source={require('../../assets/tools/download.png')} style={styles.downloadIcon} />
                 </TouchableOpacity>
-              </View>
+              </TouchableOpacity>
             ))}
           </View>
         </>
@@ -110,17 +108,23 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10,
+    borderRadius: 5,
   },
   buttonContainer: {
     flexDirection: 'row',
     marginBottom: 10,
+    justifyContent: 'space-between',
   },
   clearButton: {
     backgroundColor: 'blue',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
-    marginLeft: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  clearButtonText: {
+    color: 'white',
   },
   errorText: {
     color: 'red',
@@ -130,6 +134,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 200,
     marginBottom: 10,
+    borderRadius: 5,
   },
   resolutionContainer: {
     flexDirection: 'row',
@@ -157,10 +162,6 @@ const styles = StyleSheet.create({
   downloadIcon: {
     width: 20,
     height: 20,
-  },
-  center: {
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
 

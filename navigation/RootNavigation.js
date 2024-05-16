@@ -11,6 +11,7 @@ import YoutubeTag from '../screens/tools/youtubeTag';
 import YoutubeThumbnail from '../screens/tools/YoutubeThumbnail';
 import YoutubeVideoDownloader from '../screens/tools/YoutubeVideoDownloader';
 import FreelancingJobs from '../screens/FreelancingJobs';
+import SFXScreen from '../screens/tools/SFXScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -50,7 +51,7 @@ const RootNavigation = () => {
         />
         <Drawer.Screen 
           name="Crazy SFX" 
-          component={SettingsScreen} 
+          component={SFXScreen} 
           options={{
             drawerIcon: ({ focused, color, size }) => (
               <Ionicons name={focused ? 'musical-notes' : 'musical-notes-outline'} size={size} color={color} />
