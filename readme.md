@@ -25,6 +25,10 @@ Auth: Firebase
 Apis: YT Data Api
 ```
 
+SFX Sound Effect App github Link:
+Crack It App: https://github.com/Manoj-kumar-C/Crack-It
+Crack It Backend: https://github.com/Manoj-kumar-C/Crack-it-backend-
+
 
 Cmds to build a RN apps
 
