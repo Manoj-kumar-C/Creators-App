@@ -13,6 +13,7 @@ import YoutubeVideoDownloader from '../screens/tools/YoutubeVideoDownloader';
 import FreelancingJobs from '../screens/FreelancingJobs';
 import SFXScreen from '../screens/tools/SFXScreen';
 import ContentWriter from '../screens/tools/ContentWriter';
+import GumroadScreen from '../screens/tools/GumroadScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -23,6 +24,16 @@ const RootNavigation = () => {
         <Drawer.Screen 
           name="Courses" 
           component={HomeScreen} 
+          options={{
+            drawerIcon: ({ focused, color, size }) => (
+              <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} />
+            ),
+            headerTitleAlign: 'center',
+          }}
+        />
+        <Drawer.Screen 
+          name="Creators Assets" 
+          component={GumroadScreen} 
           options={{
             drawerIcon: ({ focused, color, size }) => (
               <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} />
