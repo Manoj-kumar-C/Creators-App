@@ -12,6 +12,7 @@ import YoutubeThumbnail from '../screens/tools/YoutubeThumbnail';
 import YoutubeVideoDownloader from '../screens/tools/YoutubeVideoDownloader';
 import FreelancingJobs from '../screens/FreelancingJobs';
 import SFXScreen from '../screens/tools/SFXScreen';
+import ContentWriter from '../screens/tools/ContentWriter';
 
 const Drawer = createDrawerNavigator();
 
@@ -81,7 +82,7 @@ const RootNavigation = () => {
         />
         <Drawer.Screen 
           name="Content Writer" 
-          component={SettingsScreen} 
+          component={ContentWriter} 
           options={{
             drawerIcon: ({ focused, color, size }) => (
               <Ionicons name={focused ? 'document-text' : 'document-text-outline'} size={size} color={color} />
