@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Image, TouchableOpacity, StyleSheet, Linking } from 'react-native';
+import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet, Linking, ScrollView } from 'react-native';
 
 const YoutubeThumbnail = () => {
   const [youtubeUrl, setYoutubeUrl] = useState('');
@@ -53,88 +53,129 @@ const YoutubeThumbnail = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter YouTube URL"
-        onChangeText={setYoutubeUrl}
-        value={youtubeUrl}
-      />
-      <View style={styles.buttonContainer}>
-        <Button title="Search" onPress={handleSearch} />
-        <TouchableOpacity onPress={handleClear} style={styles.clearButton}>
-          <Text style={styles.clearButtonText}>Clear</Text>
-        </TouchableOpacity>
-      </View>
-      {error ? (
-        <Text style={styles.errorText}>{error}</Text>
-      ) : thumbnailUrl ? (
-        <>
-          <Image
-            style={styles.thumbnail}
-            source={{ uri: thumbnailUrl }}
-          />
-          <View style={styles.resolutionContainer}>
-            <Text style={styles.resolutionLabel}>Available Resolutions:</Text>
-            <TouchableOpacity onPress={() => handleDownload(thumbnailUrl)}>
-              <Text style={styles.downloadText}>Download</Text>
-            </TouchableOpacity>
-          </View>
-          <View>
-            {resolutions.map((res, index) => (
-              <TouchableOpacity key={index} style={styles.resolutionItem} onPress={() => setThumbnailUrl(res.url)}>
-                <Text style={[styles.resolutionText, thumbnailUrl === res.url && styles.selectedResolution]}>{res.size}</Text>
-                <TouchableOpacity onPress={() => handleDownload(res.url)}>
-                  <Image source={require('../../assets/tools/download.png')} style={styles.downloadIcon} />
-                </TouchableOpacity>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        <Text style={styles.title}>YouTube Thumbnail Downloader</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter YouTube URL"
+          onChangeText={setYoutubeUrl}
+          value={youtubeUrl}
+        />
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity onPress={handleSearch} style={styles.searchButton}>
+            <Text style={styles.buttonText}>Search</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleClear} style={styles.clearButton}>
+            <Text style={styles.buttonText}>Clear</Text>
+          </TouchableOpacity>
+        </View>
+        {error ? (
+          <Text style={styles.errorText}>{error}</Text>
+        ) : thumbnailUrl ? (
+          <>
+            <Image
+              style={styles.thumbnail}
+              source={{ uri: thumbnailUrl }}
+            />
+            <View style={styles.resolutionContainer}>
+              <Text style={styles.resolutionLabel}>Available Resolutions:</Text>
+              <TouchableOpacity onPress={() => handleDownload(thumbnailUrl)}>
+                <Text style={styles.downloadText}>Download</Text>
               </TouchableOpacity>
-            ))}
-          </View>
-        </>
-      ) : (
-        <Text>No thumbnail found</Text>
-      )}
-    </View>
+            </View>
+            <View>
+              {resolutions.map((res, index) => (
+                <View key={index} style={styles.resolutionItem}>
+                  <TouchableOpacity onPress={() => setThumbnailUrl(res.url)}>
+                    <Text style={[styles.resolutionText, thumbnailUrl === res.url && styles.selectedResolution]}>{res.size}</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => handleDownload(res.url)}>
+                    <Text style={styles.downloadText}>Download</Text>
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </View>
+          </>
+        ) : (
+          <Text>No thumbnail found</Text>
+        )}
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
     padding: 20,
+    backgroundColor: '#f9f9f9',
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+    padding: 20,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 5,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 20,
+    textAlign: 'center',
   },
   input: {
-    height: 40,
-    borderColor: 'gray',
+    height: 50,
+    borderColor: '#ccc',
     borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    borderRadius: 5,
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    marginBottom: 20,
+    backgroundColor: '#fff',
   },
   buttonContainer: {
     flexDirection: 'row',
-    marginBottom: 10,
     justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  searchButton: {
+    flex: 1,
+    backgroundColor: '#007BFF',
+    paddingVertical: 15,
+    borderRadius: 8,
+    marginRight: 10,
+    alignItems: 'center',
   },
   clearButton: {
-    backgroundColor: 'blue',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
+    flex: 1,
+    backgroundColor: '#6c757d',
+    paddingVertical: 15,
+    borderRadius: 8,
+    marginLeft: 10,
     alignItems: 'center',
-    justifyContent: 'center',
   },
-  clearButtonText: {
-    color: 'white',
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   errorText: {
-    color: 'red',
-    marginBottom: 10,
+    color: '#d9534f',
+    textAlign: 'center',
+    marginBottom: 20,
   },
   thumbnail: {
     width: '100%',
     height: 200,
-    marginBottom: 10,
-    borderRadius: 5,
+    marginBottom: 20,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
   },
   resolutionContainer: {
     flexDirection: 'row',
@@ -143,25 +184,32 @@ const styles = StyleSheet.create({
   },
   resolutionLabel: {
     fontWeight: 'bold',
+    color: '#333',
   },
   downloadText: {
-    color: 'blue',
+    color: '#007BFF',
+    fontWeight: 'bold',
   },
   resolutionItem: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 8,
+    backgroundColor: '#f9f9f9',
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 2,
   },
   resolutionText: {
-    marginRight: 10,
+    fontSize: 16,
+    color: '#333',
   },
   selectedResolution: {
-    color: 'blue',
-  },
-  downloadIcon: {
-    width: 20,
-    height: 20,
+    color: '#007BFF',
   },
 });
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet, Clipboard } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Clipboard, Alert, ScrollView } from 'react-native';
 import axios from 'axios';
 
 const YoutubeTag = () => {
@@ -42,89 +42,134 @@ const YoutubeTag = () => {
   const handleCopy = () => {
     const tagsString = videoTags.join(', ');
     Clipboard.setString(tagsString);
-    alert('Tags copied to clipboard!');
+    Alert.alert('Tags copied to clipboard!');
   };
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Enter YouTube URL"
-        onChangeText={setYoutubeUrl}
-        value={youtubeUrl}
-      />
-      <View style={styles.buttonContainer}>
-        <Button title="Search" onPress={handleSearch} />
-        <TouchableOpacity onPress={handleClear} style={styles.clearButton}>
-          <Text style={{ color: 'white' }}>Clear</Text>
-        </TouchableOpacity>
-      </View>
-      {error ? (
-        <Text style={styles.errorText}>{error}</Text>
-      ) : (
-        <View style={styles.tagsContainer}>
-          <Text style={styles.tagsHeader}>Video Tags:</Text>
-          {videoTags.map((tag, index) => (
-            <Text key={index} style={styles.tagText}>{tag}</Text>
-          ))}
-          {videoTags.length > 0 && (
-            <TouchableOpacity onPress={handleCopy} style={styles.copyButton}>
-              <Text style={styles.copyButtonText}>Copy to Clipboard</Text>
-            </TouchableOpacity>
-          )}
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        <Text style={styles.title}>YouTube Tag Extractor</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter YouTube URL"
+          onChangeText={setYoutubeUrl}
+          value={youtubeUrl}
+        />
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity onPress={handleSearch} style={styles.searchButton}>
+            <Text style={styles.buttonText}>Search</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleClear} style={styles.clearButton}>
+            <Text style={styles.buttonText}>Clear</Text>
+          </TouchableOpacity>
         </View>
-      )}
-    </View>
+        {error ? (
+          <Text style={styles.errorText}>{error}</Text>
+        ) : (
+          <View style={styles.tagsContainer}>
+            <Text style={styles.tagsHeader}>Video Tags:</Text>
+            {videoTags.map((tag, index) => (
+              <Text key={index} style={styles.tagText}>{tag}</Text>
+            ))}
+            {videoTags.length > 0 && (
+              <TouchableOpacity onPress={handleCopy} style={styles.copyButton}>
+                <Text style={styles.copyButtonText}>Copy to Clipboard</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        )}
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
     padding: 20,
+    backgroundColor: '#f9f9f9',
+  },
+  container: {
+    flex: 1,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 20,
+    alignSelf: 'center',
   },
   input: {
-    height: 40,
-    borderColor: 'gray',
+    height: 50,
+    borderColor: '#ccc',
     borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 10,
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    marginBottom: 20,
+    backgroundColor: '#fff',
   },
   buttonContainer: {
     flexDirection: 'row',
-    marginBottom: 10,
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  searchButton: {
+    flex: 1,
+    backgroundColor: '#007BFF',
+    paddingVertical: 15,
+    borderRadius: 8,
+    marginRight: 10,
+    alignItems: 'center',
   },
   clearButton: {
-    backgroundColor: 'blue',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
+    flex: 1,
+    backgroundColor: '#6c757d',
+    paddingVertical: 15,
+    borderRadius: 8,
     marginLeft: 10,
+    alignItems: 'center',
   },
-  errorText: {
-    color: 'red',
-    marginBottom: 10,
-  },
-  tagsContainer: {
-    marginTop: 10,
-  },
-  tagsHeader: {
+  buttonText: {
+    color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 5,
+  },
+  errorText: {
+    color: '#d9534f',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  tagsContainer: {
+    marginTop: 20,
+    paddingHorizontal: 15,
+    paddingVertical: 20,
+    borderRadius: 8,
+    backgroundColor: '#fff',
+    elevation: 2,
+  },
+  tagsHeader: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: '#333',
   },
   tagText: {
+    fontSize: 16,
     marginBottom: 5,
+    color: '#555',
   },
   copyButton: {
-    backgroundColor: 'blue',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    alignSelf: 'center',
-    marginTop: 10,
+    marginTop: 20,
+    backgroundColor: '#28a745',
+    paddingVertical: 15,
+    borderRadius: 8,
+    alignItems: 'center',
   },
   copyButtonText: {
-    color: 'white',
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 
