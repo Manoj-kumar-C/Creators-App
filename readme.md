@@ -39,3 +39,22 @@ https://docs.expo.dev/build/setup/
 
 
 CMD to convert aab to apk
+
+
+Todos: 
+
+```
+Any other Things to be included in the Creators App 
+
+Enhancing the Ui of the application
+
+Firebase Authentication 
+
+Adding some the Assets related to content creation
+
+Add the SFX Feature
+
+Logo for the App
+
+aab to apk convertion
+```
