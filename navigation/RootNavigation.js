@@ -1,9 +1,10 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons'; // Import icons from your preferred library
+import { TouchableOpacity } from 'react-native';
 import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import { Ionicons } from '@expo/vector-icons'; // Import icons from your preferred library
 import Devs from '../screens/tools/Devs';
 import Login from '../screens/Login';
 import DownloaderPage from '../screens/tools/Aio';  
@@ -34,12 +35,17 @@ const RootNavigation = () => {
         <Drawer.Screen 
           name="Creators Assets" 
           component={GumroadScreen} 
-          options={{
+          options={({ navigation }) => ({
             drawerIcon: ({ focused, color, size }) => (
               <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} />
             ),
             headerTitleAlign: 'center',
-          }}
+            headerRight: () => (
+              <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginRight: 10 }}>
+                <Ionicons name="arrow-back" size={25} color="black" />
+              </TouchableOpacity>
+            ),
+          })}
         />
         <Drawer.Screen 
           name="AIO downloader" 

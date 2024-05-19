@@ -1,6 +1,7 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, StyleSheet } from 'react-native';
+import React from 'react';
 import { WebView } from 'react-native-webview';
+
 const GumroadScreen = () => {
   return (
     <View style={styles.container}>
@@ -9,17 +10,16 @@ const GumroadScreen = () => {
         style={styles.webview}
       />
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1, // Ensure the container takes up the full screen
-    },
-    webview: {
-      flex: 1, // Ensure the WebView takes up the full remaining space
-    },
-  });
-  
+  container: {
+    flex: 1, // Ensure the container takes up the full screen
+  },
+  webview: {
+    flex: 1, // Ensure the WebView takes up the full remaining space
+  },
+});
 
-export default GumroadScreen
+export default GumroadScreen;
