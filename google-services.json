@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "78862583564",
+    "project_id": "creatorsapp-e091d",
+    "storage_bucket": "creatorsapp-e091d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78862583564:android:26e1aacf6de69b661b6b29",
+        "android_client_info": {
+          "package_name": "com.developer.creatorsapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5Ky6o19H8DyXziI2jZh-YouUwL1Aca2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
