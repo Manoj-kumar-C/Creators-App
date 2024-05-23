@@ -52,9 +52,13 @@ Firebase Authentication
 
 Adding some the Assets related to content creation
 
+Ai Music Integration
+
 Add the SFX Feature
 
 Logo for the App
 
 aab to apk convertion
+
+
 ```
